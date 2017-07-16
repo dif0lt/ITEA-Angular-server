@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var cors=require('cors');
+var cors = require('cors');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var User = require('./routes/User');
+var Category = require('./routes/Categories');
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +29,7 @@ So now, you can use http://localhost:5000/resources/myImage.jpg to serve all the
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api/user', User);
+app.use('/api/category', Category);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -36,7 +38,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
